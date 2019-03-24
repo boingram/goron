@@ -1,6 +1,10 @@
-import * as React from 'react'
+import * as React from 'react';
 
-const Main: React.FC = ({ children }) => (
+interface Props {
+  children: string;
+}
+
+const Main: React.FC<Props> = ({ children }): React.ReactElement => (
   <main role="main" className="container">
     {children}
   </main>
