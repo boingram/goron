@@ -1,20 +1,12 @@
 # Goron
 
-To start your Phoenix server:
+Operations to run:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+- Install Elixir/Phoenix dependencies with `mix deps.get`
+- Install JS dependencies with `yarn add`
+- Start Phoenix endpoint with `mix phx.server`
+- Lint the JS with `yarn lint`
+- View routes with `mix phx.routes`
+- Run Elixir tests with `mix test`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
