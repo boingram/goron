@@ -13,6 +13,12 @@ defmodule GoronWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", GoronWeb do
+    pipe_through :api
+
+    get "/items", ItemController, :index
+  end
+
   scope "/", GoronWeb do
     pipe_through :browser
 

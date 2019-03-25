@@ -7,9 +7,6 @@
 # General application configuration
 use Mix.Config
 
-config :goron,
-  ecto_repos: [Goron.Repo]
-
 # Configures the endpoint
 config :goron, GoronWeb.Endpoint,
   url: [host: "localhost"],
