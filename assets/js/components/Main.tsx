@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface Props {
-  children: string;
+  children: React.ReactElement;
 }
 
 const Main: React.FC<Props> = ({ children }): React.ReactElement => (

@@ -13,7 +13,7 @@ module.exports = (env, options) => ({
     ]
   },
   entry: {
-      'app': './assets/js/app.tsx'
+    app: './assets/js/app.tsx'
   },
   output: {
     filename: 'app.js',
@@ -40,6 +40,6 @@ module.exports = (env, options) => ({
   ],
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions
-    extensions: ['.tx', '.tsx', '.js', '.jsx', '.json']
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
   }
 });
