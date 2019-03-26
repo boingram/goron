@@ -4,6 +4,8 @@ defmodule Goron.ItemTest do
   alias Goron.Item
 
   test "get all the items" do
-    assert Item.get_all_items() == []
+    assert Enum.all?(Item.get_all_items(), fn item ->
+             item.id != nil && item.name != "" && !item.selected
+           end)
   end
 end

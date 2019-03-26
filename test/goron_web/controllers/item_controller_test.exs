@@ -7,8 +7,8 @@ defmodule GoronWeb.ItemControllerTest do
       |> get(Routes.item_path(conn, :index))
       |> json_response(200)
 
-    expected = []
-
-    assert response == expected
+    assert Enum.all?(response, fn item ->
+             item["id"] != nil && item["name"] != "" && !item["selected"]
+           end)
   end
 end

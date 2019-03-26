@@ -3,5 +3,8 @@ defmodule Goron.Item do
   Defines an interface for retrieving the items that can 
   be collected by Link
   """
+  @derive Jason.Encoder
+  defstruct id: nil, name: "", selected: false
+
   defdelegate get_all_items(), to: Goron.Item.Impl
 end
