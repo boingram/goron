@@ -13,6 +13,7 @@
   "rules": {
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-one-expression-per-line": [0],
     "react/prop-types": "off"
   },
   "settings": {

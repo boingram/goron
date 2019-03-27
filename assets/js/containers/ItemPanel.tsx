@@ -15,7 +15,7 @@ const ItemPanel: React.FC = (): React.ReactElement => {
       .catch(error => console.log(`error getting items: ${error}`));
   }, []);
 
-  const itemComponents = items.map(item => <Item {...item} />);
+  const itemComponents = items.map(item => <Item key={item.id} {...item} />);
 
   return <div>{itemComponents}</div>;
 };
