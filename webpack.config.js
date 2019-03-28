@@ -30,7 +30,19 @@ module.exports = (env, options) => ({
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('typings-for-css-modules-loader'),
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+              namedExport: true,
+              camelCase: true
+            }
+          }
+        ]
       }
     ]
   },
