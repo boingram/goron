@@ -6,11 +6,12 @@ defmodule Goron.Item.Impl do
 
   alias Goron.Item
 
-  def get_all_items() do
+  def get_all_items do
     [
       %Item{
         id: 1,
-        name: "Kokiri Sword"
+        name: "Kokiri Sword",
+        image: "kokiri-sword"
       }
     ]
   end

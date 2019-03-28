@@ -8,7 +8,7 @@ defmodule GoronWeb.ItemControllerTest do
       |> json_response(200)
 
     assert Enum.all?(response, fn item ->
-             item["id"] != nil && item["name"] != "" && !item["selected"]
+             item["id"] != nil && item["name"] != "" && !item["selected"] && item["image"] != ""
            end)
   end
 end
