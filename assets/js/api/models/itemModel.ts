@@ -1,6 +1,6 @@
 export default interface Item {
   id: number;
   name: string;
-  selected: false;
+  selected: boolean;
   image: string;
 }
