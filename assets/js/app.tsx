@@ -4,6 +4,6 @@ import 'phoenix_html';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Root from './Root';
+import Main from './components/Main';
 
-ReactDOM.render(<Root />, document.getElementById('react-app'));
+ReactDOM.render(<Main />, document.getElementById('react-app'));

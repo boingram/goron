@@ -1,12 +1,10 @@
 import * as React from 'react';
 
-interface Props {
-  children: React.ReactElement;
-}
+import ItemPanel from '../containers/ItemPanel';
 
-const Main: React.FC<Props> = ({ children }): React.ReactElement => (
+const Main: React.FC = (): React.ReactElement => (
   <main role="main" className="container">
-    {children}
+    <ItemPanel />
   </main>
 );
 
