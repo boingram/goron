@@ -9,11 +9,9 @@ const ItemPanel: React.FC = (): React.ReactElement => {
   const [items, setItems] = useState<ItemModel[]>([]);
 
   useEffect(() => {
-    getAllItems()
-      .then(response => {
-        setItems(response.data);
-      })
-      .catch(error => console.log(`error getting items: ${error}`));
+    getAllItems().then(response => {
+      setItems(response.data);
+    });
   }, []);
 
   const itemComponents = items.map(item => {
