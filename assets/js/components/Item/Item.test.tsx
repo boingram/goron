@@ -12,7 +12,7 @@ describe('Item', () => {
   const image = 'kokiri-sword';
   const clickHandler = (): void => {};
 
-  test('unselected item ', () => {
+  it('displays an unselected item', () => {
     const selected = false;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
@@ -44,7 +44,7 @@ describe('Item', () => {
     expect(img.props.alt).toBe(name);
   });
 
-  test('selected item ', () => {
+  it('displays a selected item', () => {
     const selected = true;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(

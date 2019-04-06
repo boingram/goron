@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AxiosResponse } from 'axios';
 
 import classes from './ItemPanel.module.css';
 import getAllItems from '../../api/goronApi';
@@ -9,7 +10,7 @@ const ItemPanel: React.FC = (): React.ReactElement => {
   const [items, setItems] = useState<ItemModel[]>([]);
 
   useEffect(() => {
-    getAllItems().then(response => {
+    getAllItems().then((response: AxiosResponse<ItemModel[]>) => {
       setItems(response.data);
     });
   }, []);
