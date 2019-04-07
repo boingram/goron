@@ -1,8 +1,5 @@
 import React from 'react';
-import TestRenderer, {
-  ReactTestRenderer,
-  ReactTestInstance
-} from 'react-test-renderer';
+import TestRenderer, { ReactTestRenderer, ReactTestInstance } from 'react-test-renderer';
 
 import Item from './Item';
 
@@ -16,13 +13,7 @@ describe('Item', () => {
     const selected = false;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
-      <Item
-        id={id}
-        name={name}
-        image={image}
-        selected={selected}
-        clickHandler={clickHandler}
-      />
+      <Item id={id} name={name} image={image} selected={selected} clickHandler={clickHandler} />
     );
 
     const instance: ReactTestInstance = testRenderer.root;
@@ -48,13 +39,7 @@ describe('Item', () => {
     const selected = true;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
-      <Item
-        id={id}
-        name={name}
-        image={image}
-        selected={selected}
-        clickHandler={clickHandler}
-      />
+      <Item id={id} name={name} image={image} selected={selected} clickHandler={clickHandler} />
     );
 
     const instance: ReactTestInstance = testRenderer.root;

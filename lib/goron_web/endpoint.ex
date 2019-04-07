@@ -1,10 +1,6 @@
 defmodule GoronWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :goron
 
-  socket "/socket", GoronWeb.UserSocket,
-    websocket: true,
-    longpoll: false
-
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phx.digest

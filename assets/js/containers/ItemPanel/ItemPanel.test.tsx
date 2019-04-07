@@ -1,9 +1,5 @@
 import React from 'react';
-import TestRenderer, {
-  ReactTestRenderer,
-  ReactTestInstance,
-  act
-} from 'react-test-renderer';
+import TestRenderer, { ReactTestRenderer, ReactTestInstance, act } from 'react-test-renderer';
 import { fireEvent, render, waitForElement } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 import { AxiosPromise } from 'axios';
@@ -69,9 +65,7 @@ describe('ItemPanel', () => {
 
     fireEvent.click(image);
 
-    const selectedImage = await waitForElement(() =>
-      getByAltText('Kokiri Sword')
-    );
+    const selectedImage = await waitForElement(() => getByAltText('Kokiri Sword'));
     expect(selectedImage).not.toHaveClass();
   });
 });
