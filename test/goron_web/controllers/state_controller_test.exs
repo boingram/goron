@@ -7,13 +7,18 @@ defmodule GoronWeb.StateControllerTest do
       |> get(Routes.state_path(conn, :get_locations))
       |> json_response(200)
 
-    assert Map.has_key?(response, "overworld")
+    # we got back locations 
+    assert length(response) > 0
+
+    # all of the locations had an area
+    assert Enum.all?(response, &(&1["area"] != ""))
 
     locations =
       response
-      |> Map.values()
+      |> Enum.map(& &1["locations"])
       |> List.flatten()
 
+    # all locations had the correct fields
     assert Enum.all?(locations, fn location ->
              location["id"] != nil && location["name"] != "" && location["area"] != "" &&
                !location["visited"]

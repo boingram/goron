@@ -11,13 +11,12 @@ defmodule Goron.Location do
 
   def get_all_locations(%State{items: items}) do
     items
-    |> Map.new(&{&1.name, &1})
     |> get_locations
   end
 
   def get_locations(items) do
-    %{
-      overworld: Overworld.get_locations(items)
-    }
+    [
+      Overworld.get_locations(items)
+    ]
   end
 end
