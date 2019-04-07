@@ -7,7 +7,7 @@ defmodule GoronWeb.StateControllerTest do
       |> get(Routes.state_path(conn, :get_locations))
       |> json_response(200)
 
-    # we got back locations 
+    # we got back locations
     assert length(response) > 0
 
     # all of the locations had an area

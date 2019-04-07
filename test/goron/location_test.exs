@@ -7,7 +7,7 @@ defmodule Goron.LocationTest do
   test "all the locations have the basic fields" do
     areas = Location.get_all_locations(%State{})
 
-    # we got back locations 
+    # we got back locations
     assert length(areas) > 0
 
     # all of the locations had an area
