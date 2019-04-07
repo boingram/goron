@@ -3,6 +3,7 @@ defmodule Goron.Location do
   Provides operations to retrieve and check accessibility
   of all locations in the game
   """
+  @derive Jason.Encoder
   defstruct id: nil, name: "", area: "", accessible: false, visited: false
 
   alias Goron.Location.Overworld

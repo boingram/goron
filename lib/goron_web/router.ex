@@ -17,6 +17,7 @@ defmodule GoronWeb.Router do
     pipe_through :api
 
     get "/items", ItemController, :index
+    get "/locations", StateController, :get_locations
   end
 
   scope "/", GoronWeb do

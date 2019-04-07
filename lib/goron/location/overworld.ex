@@ -22,7 +22,7 @@ defmodule Goron.Location.Overworld do
     )
   end
 
-  def is_accessible?("Kokiri Sword Chest", items) do
+  def is_accessible?("Kokiri Sword Chest", _items) do
     true
   end
 end
