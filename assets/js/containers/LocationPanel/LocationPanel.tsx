@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { AxiosResponse } from 'axios';
 
+import Area, { AreaProps } from '../../components/Area/Area';
 import { getAllLocations } from '../../api/goronApi';
-import LocationModel from '../../api/models/locationModel';
-
-type MappedLocation = Map<string, LocationModel[]>;
+import AreaModel from '../../api/models/areaModel';
 
 const LocationPanel: React.FC = (): React.ReactElement => {
-  const [locations, setLocations] = useState<MappedLocation>(new Map());
+  const [locations, setLocations] = useState<AreaModel[]>([]);
 
   useEffect(() => {
-    getAllLocations().then((response: AxiosResponse<MappedLocation>) => {
+    getAllLocations().then((response: AxiosResponse<AreaModel[]>) => {
       setLocations(response.data);
     });
   }, []);
 
-  return <div />;
+  const areaComponents: React.ReactElement[] = locations.map((location: AreaProps) => (
+    <Area key={location.area} {...location} />
+  ));
+
+  return <div>{areaComponents}</div>;
 };
 
 export default LocationPanel;

@@ -4,30 +4,28 @@ import { fireEvent, render, waitForElement } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 import { AxiosPromise } from 'axios';
 
-import getAllItems from '../../api/goronApi';
 import Item from '../../components/Item/Item';
 import ItemModel from '../../api/models/itemModel';
 import ItemPanel from './ItemPanel';
 
-jest.mock('../../api/goronApi', () =>
-  jest.fn(
-    (): AxiosPromise<ItemModel[]> => {
-      return Promise.resolve({
-        data: [
-          {
-            id: 1,
-            name: 'Kokiri Sword',
-            selected: false,
-            image: 'kokiri-sword'
-          }
-        ],
-        status: 200,
-        statusText: 'OK',
-        headers: [],
-        config: {}
-      });
-    }
-  )
+const goronApi = require.requireActual('../../api/goronApi.ts');
+goronApi.getAllItems = jest.fn(
+  (): AxiosPromise<ItemModel[]> => {
+    return Promise.resolve({
+      data: [
+        {
+          id: 1,
+          name: 'Kokiri Sword',
+          selected: false,
+          image: 'kokiri-sword'
+        }
+      ],
+      status: 200,
+      statusText: 'OK',
+      headers: [],
+      config: {}
+    });
+  }
 );
 
 afterEach(() => {
@@ -41,7 +39,7 @@ describe('ItemPanel', () => {
       renderer.update(<ItemPanel />);
     });
 
-    expect(getAllItems).toBeCalledTimes(1);
+    expect(goronApi.getAllItems).toBeCalledTimes(1);
 
     const instance: ReactTestInstance = renderer.root;
 
@@ -58,7 +56,7 @@ describe('ItemPanel', () => {
 
   it('clicking on an image marks it as selected', async () => {
     const { getByAltText } = render(<ItemPanel />);
-    expect(getAllItems).toBeCalledTimes(1);
+    expect(goronApi.getAllItems).toBeCalledTimes(1);
 
     const image = await waitForElement(() => getByAltText('Kokiri Sword'));
     expect(image).toHaveClass('unselected');
