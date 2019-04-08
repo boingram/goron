@@ -1,0 +1,10 @@
+.area button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.area button:focus {
+  outline: 0;
+}
