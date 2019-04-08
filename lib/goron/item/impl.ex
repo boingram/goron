@@ -6,6 +6,11 @@ defmodule Goron.Item.Impl do
 
   alias Goron.Item
 
+  @item_atoms [
+    :kokiri_sword,
+    :ocarina
+  ]
+
   def get_all_items do
     [
       %Item{
@@ -19,5 +24,9 @@ defmodule Goron.Item.Impl do
         image: "ocarina-1"
       }
     ]
+  end
+
+  def id_to_atom(id) when is_number(id) do
+    @item_atoms[id]
   end
 end
