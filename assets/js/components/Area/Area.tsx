@@ -19,7 +19,7 @@ const Area: React.FC<AreaProps> = (props: AreaProps): React.ReactElement => {
   }
 
   return (
-    <div className={classes.Area}>
+    <div className={classes.area}>
       <button onClick={clickHandler} type="button">
         {area}
       </button>
