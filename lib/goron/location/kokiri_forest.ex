@@ -1,13 +1,13 @@
-defmodule Goron.Location.Overworld do
+defmodule Goron.Location.KokiriForest do
   @moduledoc """
   Provides operations to retrieve and check accessibility
-  of overworld locations
+  of Kokiri Forest locations
   """
 
   alias Goron.Area
   alias Goron.Location
 
-  @area "Overworld"
+  @area "Kokiri Forest"
 
   def get_locations(items) do
     locations =

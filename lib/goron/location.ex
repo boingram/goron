@@ -6,7 +6,7 @@ defmodule Goron.Location do
   @derive Jason.Encoder
   defstruct id: nil, name: "", area: "", accessible: false, visited: false
 
-  alias Goron.Location.Overworld
+  alias Goron.Location.KokiriForest
   alias Goron.State
 
   def get_all_locations(%State{items: items}) do
@@ -16,7 +16,7 @@ defmodule Goron.Location do
 
   def get_locations(items) do
     [
-      Overworld.get_locations(items)
+      KokiriForest.get_locations(items)
     ]
   end
 end
