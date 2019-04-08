@@ -1,21 +1,29 @@
 import React from 'react';
 
 import AreaModel from '../../api/models/areaModel';
+import classes from './Area.module.css';
 import Location from '../Location/Location';
 
-export type AreaProps = AreaModel;
+type AreaClickHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+
+export interface AreaProps extends AreaModel {
+  clickHandler: AreaClickHandler;
+}
 
 const Area: React.FC<AreaProps> = (props: AreaProps): React.ReactElement => {
-  const { area, locations } = props;
+  const { area, locations, clickHandler, open } = props;
+
+  let locationComponents: React.ReactElement[] = [];
+  if (open) {
+    locationComponents = locations.map(location => <Location key={location.id} {...location} />);
+  }
 
   return (
-    <div>
-      {area}
-      <ul>
-        {locations.map(location => (
-          <Location key={location.id} {...location} />
-        ))}
-      </ul>
+    <div className={classes.Area}>
+      <button onClick={clickHandler} type="button">
+        {area}
+      </button>
+      <ul>{locationComponents}</ul>
     </div>
   );
 };
