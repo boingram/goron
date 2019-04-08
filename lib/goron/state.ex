@@ -4,5 +4,5 @@ defmodule Goron.State do
   terms of items acquired, locations checked, and 
   rules enforced
   """
-  defstruct items: [], locations: []
+  defstruct items: %{}, locations: %{}
 end

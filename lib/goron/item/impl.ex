@@ -12,6 +12,11 @@ defmodule Goron.Item.Impl do
         id: 1,
         name: "Kokiri Sword",
         image: "kokiri-sword"
+      },
+      %Item{
+        id: 2,
+        name: "Ocarina",
+        image: "ocarina-1"
       }
     ]
   end
