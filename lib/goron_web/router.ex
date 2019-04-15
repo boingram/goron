@@ -25,9 +25,4 @@ defmodule GoronWeb.Router do
 
     get "/*path", PageController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", GoronWeb do
-  #   pipe_through :api
-  # end
 end
