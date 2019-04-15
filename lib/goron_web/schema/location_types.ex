@@ -1,4 +1,7 @@
 defmodule GoronWeb.Schema.LocationTypes do
+  @moduledoc """
+  Defines GraphQL types for a location
+  """
   use Absinthe.Schema.Notation
 
   object :location do

@@ -8,7 +8,7 @@ defmodule Goron.Area do
   alias Goron.Area.KokiriForest
   alias Goron.State
 
-  def get_all_areas() do
+  def get_all_areas do
     get_all_areas(%State{items: []})
   end
 

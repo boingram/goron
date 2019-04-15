@@ -1,4 +1,8 @@
 defmodule GoronWeb.Schema do
+  @moduledoc """
+  The GraphQL schema for accessing various pieces of data
+  in the application
+  """
   use Absinthe.Schema
   import_types(GoronWeb.Schema.AreaTypes)
   import_types(GoronWeb.Schema.ItemTypes)
