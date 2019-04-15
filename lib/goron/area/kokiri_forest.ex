@@ -1,4 +1,4 @@
-defmodule Goron.Location.KokiriForest do
+defmodule Goron.Area.KokiriForest do
   @moduledoc """
   Provides operations to retrieve and check accessibility
   of Kokiri Forest locations
@@ -9,7 +9,7 @@ defmodule Goron.Location.KokiriForest do
 
   @area "Kokiri Forest"
 
-  def get_locations(items) do
+  def get_area(items) do
     locations =
       Enum.map(
         [
@@ -44,7 +44,7 @@ defmodule Goron.Location.KokiriForest do
       )
 
     %Area{
-      area: @area,
+      name: @area,
       locations: locations
     }
   end

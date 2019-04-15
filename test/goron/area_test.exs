@@ -1,17 +1,17 @@
-defmodule Goron.LocationTest do
+defmodule Goron.AreaTest do
   use ExUnit.Case
 
-  alias Goron.Location
+  alias Goron.Area
   alias Goron.State
 
   test "all the locations have the basic fields" do
-    areas = Location.get_all_locations(%State{})
+    areas = Area.get_all_areas()
 
-    # we got back locations
+    # we got back areas
     assert length(areas) > 0
 
-    # all of the locations had an area
-    assert Enum.all?(areas, &(&1.area != ""))
+    # all of the areas had a name
+    assert Enum.all?(areas, &(&1.name != ""))
 
     locations =
       areas

@@ -1,7 +1,7 @@
-defmodule Goron.Location.KokiriForestTest do
+defmodule Goron.Area.KokiriForestTest do
   use ExUnit.Case
 
-  alias Goron.Location.KokiriForest
+  alias Goron.Area.KokiriForest
 
   test "kokiri sword chest is always accessible" do
     assert KokiriForest.is_accessible?("Kokiri Sword Chest", %{})

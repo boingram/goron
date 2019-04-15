@@ -1,8 +1,25 @@
 defmodule Goron.Area do
   @moduledoc """
-  Defines data structure for an area of locations to be 
-  checked by the player
+  Defines operations to retrieve areas based on the user's state.
   """
   @derive Jason.Encoder
-  defstruct area: "", locations: []
+  defstruct name: "", locations: []
+
+  alias Goron.Area.KokiriForest
+  alias Goron.State
+
+  def get_all_areas() do
+    get_all_areas(%State{items: []})
+  end
+
+  def get_all_areas(%State{items: items}) do
+    items
+    |> get_areas
+  end
+
+  def get_areas(items) do
+    [
+      KokiriForest.get_area(items)
+    ]
+  end
 end
