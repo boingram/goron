@@ -13,11 +13,11 @@ defmodule GoronWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", GoronWeb do
+  scope "/api" do
     pipe_through :api
 
-    get "/items", ItemController, :index
-    get "/locations", StateController, :get_locations
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: GoronWeb.Schema, json_codec: Jason
+    forward "/", Absinthe.Plug, schema: GoronWeb.Schema, json_codec: Jason
   end
 
   scope "/", GoronWeb do
