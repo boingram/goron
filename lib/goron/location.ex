@@ -1,7 +1,6 @@
 defmodule Goron.Location do
   @moduledoc """
-  Provides operations to retrieve and check accessibility
-  of all locations in the game
+  Defines a location where items can be found.
   """
   @derive Jason.Encoder
   defstruct id: nil, name: "", area: "", accessible: false, visited: false

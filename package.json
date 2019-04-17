@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.3",
+    "apollo-boost": "^0.3.1",
     "axios": "^0.18.0",
+    "graphql": "^14.2.1",
+    "graphql-tag": "^2.10.1",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
     "react": "^16.9.0-alpha",
@@ -24,6 +27,7 @@
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/graphql": "^14.2.0",
     "@types/jest": "^24.0.11",
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.3",

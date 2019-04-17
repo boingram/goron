@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { AxiosResponse } from 'axios';
+import React, { useState, useEffect, useContext } from 'react';
+import ApolloClient, { ApolloQueryResult } from 'apollo-boost';
 
+import ApolloContext from '../../context';
 import classes from './ItemPanel.module.css';
-import { getAllItems } from '../../api/goronApi';
+import { GET_ALL_ITEMS, ItemsResult } from '../../api/models/graphql/itemQueries';
 import Item from '../../components/Item/Item';
 import ItemModel from '../../api/models/itemModel';
 
 const ItemPanel: React.FC = (): React.ReactElement => {
   const [items, setItems] = useState<ItemModel[]>([]);
 
+  const apolloClient: ApolloClient<object> = useContext(ApolloContext);
+
   useEffect(() => {
-    getAllItems().then((response: AxiosResponse<ItemModel[]>) => {
-      setItems(response.data);
+    apolloClient.query({ query: GET_ALL_ITEMS }).then((result: ApolloQueryResult<ItemsResult>) => {
+      setItems(result.data.items);
     });
   }, []);
 
