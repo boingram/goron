@@ -9,6 +9,7 @@ const Main: React.FC = (): React.ReactElement => (
   <main role="main" className="container">
     <ApolloContext.Provider value={goronClient}>
       <ItemPanel />
+      <LocationPanel />
     </ApolloContext.Provider>
   </main>
 );

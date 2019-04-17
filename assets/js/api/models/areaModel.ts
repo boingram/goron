@@ -1,7 +1,7 @@
 import LocationModel from './locationModel';
 
 export default interface AreaModel {
-  area: string;
+  name: string;
   open: boolean;
   locations: LocationModel[];
 }

@@ -11,7 +11,7 @@ export interface AreaProps extends AreaModel {
 }
 
 const Area: React.FC<AreaProps> = (props: AreaProps): React.ReactElement => {
-  const { area, locations, clickHandler, open } = props;
+  const { name, locations, clickHandler, open } = props;
 
   let locationComponents: React.ReactElement[] = [];
   if (open) {
@@ -21,7 +21,7 @@ const Area: React.FC<AreaProps> = (props: AreaProps): React.ReactElement => {
   return (
     <div className={classes.area}>
       <button onClick={clickHandler} type="button">
-        {area}
+        {name}
       </button>
       <ul>{locationComponents}</ul>
     </div>
