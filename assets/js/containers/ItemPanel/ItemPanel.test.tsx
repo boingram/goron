@@ -2,31 +2,25 @@ import React from 'react';
 import TestRenderer, { ReactTestRenderer, ReactTestInstance, act } from 'react-test-renderer';
 import { fireEvent, render, waitForElement } from 'react-testing-library';
 import 'jest-dom/extend-expect';
-import { AxiosPromise } from 'axios';
 
+import ApolloContext from '../../context';
 import Item from '../../components/Item/Item';
-import ItemModel from '../../api/models/itemModel';
 import ItemPanel from './ItemPanel';
+import { ItemsResult } from '../../api/models/graphql/itemQueries';
 
-const goronApi = require.requireActual('../../api/goronApi.ts');
-goronApi.getAllItems = jest.fn(
-  (): AxiosPromise<ItemModel[]> => {
-    return Promise.resolve({
-      data: [
-        {
-          id: 1,
-          name: 'Kokiri Sword',
-          selected: false,
-          image: 'kokiri-sword'
-        }
-      ],
-      status: 200,
-      statusText: 'OK',
-      headers: [],
-      config: {}
-    });
-  }
-);
+const itemsQueryData: ItemsResult = {
+  items: [
+    {
+      id: 1,
+      name: 'Kokiri Sword',
+      selected: false,
+      image: 'kokiri-sword'
+    }
+  ]
+};
+
+jest.mock('apollo-boost');
+const client = require('apollo-boost').getMockedApolloClient(itemsQueryData);
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -36,10 +30,13 @@ describe('ItemPanel', () => {
   it('shows a list of items populated by an api call', async () => {
     const renderer: ReactTestRenderer = TestRenderer.create(<div />);
     await act(async () => {
-      renderer.update(<ItemPanel />);
+      renderer.update(
+        <ApolloContext.Provider value={client}>
+          <ItemPanel />
+        </ApolloContext.Provider>
+      );
     });
-
-    expect(goronApi.getAllItems).toBeCalledTimes(1);
+    expect(client.query).toBeCalledTimes(1);
 
     const instance: ReactTestInstance = renderer.root;
 
@@ -55,8 +52,12 @@ describe('ItemPanel', () => {
   });
 
   it('clicking on an image marks it as selected', async () => {
-    const { getByAltText } = render(<ItemPanel />);
-    expect(goronApi.getAllItems).toBeCalledTimes(1);
+    const { getByAltText } = render(
+      <ApolloContext.Provider value={client}>
+        <ItemPanel />
+      </ApolloContext.Provider>
+    );
+    expect(client.query).toBeCalledTimes(1);
 
     const image = await waitForElement(() => getByAltText('Kokiri Sword'));
     expect(image).toHaveClass('unselected');

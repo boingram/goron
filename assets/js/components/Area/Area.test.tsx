@@ -21,12 +21,12 @@ describe('Area', () => {
     const open = false;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
-      <Area area={name} locations={locations} open={open} clickHandler={clickHandler} />
+      <Area name={name} locations={locations} open={open} clickHandler={clickHandler} />
     );
 
     const instance: ReactTestInstance = testRenderer.root;
     const area: ReactTestInstance = instance.findByType(Area);
-    expect(area.props.area).toBe(name);
+    expect(area.props.name).toBe(name);
     expect(area.props.locations).toBe(locations);
     expect(area.props.open).toBe(open);
     expect(area.props.clickHandler).toBe(clickHandler);
@@ -52,12 +52,12 @@ describe('Area', () => {
     const open = true;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
-      <Area area={name} locations={locations} open={open} clickHandler={clickHandler} />
+      <Area name={name} locations={locations} open={open} clickHandler={clickHandler} />
     );
 
     const instance: ReactTestInstance = testRenderer.root;
     const area: ReactTestInstance = instance.findByType(Area);
-    expect(area.props.area).toBe(name);
+    expect(area.props.name).toBe(name);
     expect(area.props.locations).toBe(locations);
     expect(area.props.open).toBe(open);
     expect(area.props.clickHandler).toBe(clickHandler);

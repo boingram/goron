@@ -12,23 +12,20 @@ const LocationPanel: React.FC = (): React.ReactElement => {
   const apolloClient: ApolloClient<object> = useContext(ApolloContext);
 
   useEffect(() => {
-    apolloClient
-      .query({ query: GET_ALL_AREAS })
-      .then((result: ApolloQueryResult<AreasResult>) => {
-        const retrievedAreas = result.data.areas.map(
-          (model: AreaModel, i: number): AreaModel => {
-            const open: boolean = areas.length > 0 ? areas[i].open : false;
+    apolloClient.query({ query: GET_ALL_AREAS }).then((result: ApolloQueryResult<AreasResult>) => {
+      const retrievedAreas = result.data.areas.map(
+        (model: AreaModel, i: number): AreaModel => {
+          const open: boolean = areas.length > 0 ? areas[i].open : false;
 
-            return {
-              name: model.name,
-              locations: model.locations,
-              open
-            };
-          }
-        );
-        setAreas(retrievedAreas);
-      })
-      .catch(error => console.log(error));
+          return {
+            name: model.name,
+            locations: model.locations,
+            open
+          };
+        }
+      );
+      setAreas(retrievedAreas);
+    });
   }, []);
 
   const areaComponents: React.ReactElement[] = areas.map((area: AreaModel) => {
