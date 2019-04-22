@@ -2,7 +2,6 @@ defmodule Goron.AreaTest do
   use ExUnit.Case
 
   alias Goron.Area
-  alias Goron.State
 
   test "all the locations have the basic fields" do
     areas = Area.get_all_areas()
