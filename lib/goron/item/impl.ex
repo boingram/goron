@@ -20,8 +20,11 @@ defmodule Goron.Item.Impl do
       },
       %Item{
         id: 2,
-        name: "Ocarina",
-        image: "ocarina-1"
+        name: "Fairy Ocarina",
+        upgrade_names: ["Ocarina of Time"],
+        image: "ocarina-1",
+        upgrade_images: ["ocarina-2"],
+        max_level: 2
       }
     ]
   end

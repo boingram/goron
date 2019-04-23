@@ -13,8 +13,20 @@ const itemsQueryData: ItemsResult = {
     {
       id: 1,
       name: 'Kokiri Sword',
-      selected: false,
-      image: 'kokiri-sword'
+      upgradeNames: [],
+      image: 'kokiri-sword',
+      upgradeImages: [],
+      level: 0,
+      maxLevel: 1
+    },
+    {
+      id: 2,
+      name: 'Fairy Ocarina',
+      upgradeNames: ['Ocarina of Time'],
+      image: 'ocarina-1',
+      upgradeImages: ['ocarina-2'],
+      level: 0,
+      maxLevel: 2
     }
   ]
 };
@@ -41,17 +53,18 @@ describe('ItemPanel', () => {
     const instance: ReactTestInstance = renderer.root;
 
     const items: ReactTestInstance[] = instance.findAllByType(Item);
-    expect(items).toHaveLength(1);
+    expect(items).toHaveLength(2);
 
-    const item: ReactTestInstance = items[0];
-    expect(item.props.id).toBe(1);
-    expect(item.props.name).toBe('Kokiri Sword');
-    expect(item.props.image).toBe('kokiri-sword');
-    expect(item.props.selected).toBe(false);
-    expect(item.props.clickHandler).toBeTruthy();
+    items.forEach((item: ReactTestInstance) => {
+      expect(item.props.id).toBeTruthy();
+      expect(item.props.name).toBeTruthy();
+      expect(item.props.image).toBeTruthy();
+      expect(item.props.level).toBe(0);
+      expect(item.props.clickHandler).toBeTruthy();
+    });
   });
 
-  it('clicking on an image marks it as selected', async () => {
+  it('clicking on an image changes the level', async () => {
     const { getByAltText } = render(
       <ApolloContext.Provider value={client}>
         <ItemPanel />
@@ -62,9 +75,12 @@ describe('ItemPanel', () => {
     const image = await waitForElement(() => getByAltText('Kokiri Sword'));
     expect(image).toHaveClass('unselected');
 
-    fireEvent.click(image);
-
+    fireEvent.mouseDown(image);
     const selectedImage = await waitForElement(() => getByAltText('Kokiri Sword'));
     expect(selectedImage).not.toHaveClass();
+
+    fireEvent.mouseDown(image, { button: 2 });
+    const unselectedImage = await waitForElement(() => getByAltText('Kokiri Sword'));
+    expect(unselectedImage).toHaveClass('unselected');
   });
 });

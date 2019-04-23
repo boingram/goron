@@ -10,17 +10,23 @@ interface ItemProps extends ItemModel {
 }
 
 const Item: React.FC<ItemProps> = (props: ItemProps): React.ReactElement => {
-  const { clickHandler, image, selected, name } = props;
-  const imgSrc = `images/items/${image}.png`;
+  const { clickHandler, image, upgradeImages, level, name } = props;
 
   let imageClass = '';
-  if (!selected) {
+  if (level === 0) {
     imageClass = classes.unselected;
   }
 
+  let imageForLevel = image;
+  if (upgradeImages && upgradeImages.length > 0 && level > 1) {
+    imageForLevel = upgradeImages[level - 2];
+  }
+
+  const imgSrc = `images/items/${imageForLevel}.png`;
+
   return (
     <div className={classes.item}>
-      <img src={imgSrc} className={imageClass} onClick={clickHandler} alt={name} />
+      <img src={imgSrc} className={imageClass} onMouseDown={clickHandler} alt={name} />
     </div>
   );
 };

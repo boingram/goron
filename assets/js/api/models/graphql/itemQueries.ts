@@ -8,8 +8,11 @@ export const GET_ALL_ITEMS: DocumentNode = gql`
     items {
       id
       name
-      selected
+      upgradeNames
       image
+      upgradeImages
+      level
+      maxLevel
     }
   }
 `;

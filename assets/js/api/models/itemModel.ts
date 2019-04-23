@@ -1,6 +1,9 @@
 export default interface Item {
   id: number;
   name: string;
-  selected: boolean;
+  upgradeNames: string[];
   image: string;
+  upgradeImages: string[];
+  level: number;
+  maxLevel: number;
 }

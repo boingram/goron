@@ -4,7 +4,13 @@ defmodule Goron.Item do
   be collected by Link
   """
   @derive Jason.Encoder
-  defstruct id: nil, name: "", image: "", selected: false
+  defstruct id: nil,
+            name: "",
+            upgrade_names: [],
+            image: "",
+            upgrade_images: [],
+            level: 0,
+            max_level: 1
 
   defdelegate get_all_items(), to: Goron.Item.Impl
 end

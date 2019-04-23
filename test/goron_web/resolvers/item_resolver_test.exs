@@ -8,8 +8,11 @@ defmodule GoronWeb.Resolvers.ItemResolverTest do
         items {
           id 
           name
+          upgradeNames
           image 
-          selected
+          upgradeImages
+          level
+          maxLevel
         }
       }
       """
@@ -29,6 +32,7 @@ defmodule GoronWeb.Resolvers.ItemResolverTest do
     assert item["id"] != ""
     assert item["name"] != ""
     assert item["image"] != ""
-    assert !item["selected"]
+    assert item["level"] == 0
+    assert item["maxLevel"] > 0
   end
 end
