@@ -30,6 +30,11 @@ defmodule Goron.Item.Impl do
   end
 
   def id_to_atom(id) when is_number(id) do
-    @item_atoms[id]
+    Enum.at(@item_atoms, id - 1)
+  end
+
+  def id_to_atom(id) do
+    {numeric_id, _remainder} = Integer.parse(id)
+    id_to_atom(numeric_id)
   end
 end

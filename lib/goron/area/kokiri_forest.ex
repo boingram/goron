@@ -6,6 +6,7 @@ defmodule Goron.Area.KokiriForest do
 
   alias Goron.Area
   alias Goron.Location
+  alias Goron.Item.VisitedItem
 
   @area "Kokiri Forest"
 
@@ -70,6 +71,6 @@ defmodule Goron.Area.KokiriForest do
   end
 
   def is_accessible?("Ocarina Memory Game", items) do
-    false
+    VisitedItem.is_acquired?(items, :ocarina)
   end
 end

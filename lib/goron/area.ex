@@ -9,10 +9,10 @@ defmodule Goron.Area do
   alias Goron.State
 
   def get_all_areas do
-    get_all_areas(%State{items: []})
+    get_all_areas(%{})
   end
 
-  def get_all_areas(%State{items: items}) do
+  def get_all_areas(items = %{}) do
     items
     |> get_areas
   end

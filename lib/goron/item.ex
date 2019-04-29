@@ -13,4 +13,6 @@ defmodule Goron.Item do
             max_level: 1
 
   defdelegate get_all_items(), to: Goron.Item.Impl
+
+  defdelegate id_to_atom(id), to: Goron.Item.Impl
 end
