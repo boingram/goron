@@ -4,7 +4,7 @@ defmodule Goron.State do
   terms of items acquired, locations checked, and 
   rules enforced
   """
-  defstruct id: nil, items: [], areas: []
+  defstruct id: nil, items: %{}, areas: %{}
 
   @process_name :state
 
