@@ -14,12 +14,12 @@ defmodule Goron.Item.Impl do
   def get_all_items do
     [
       %Item{
-        id: 1,
+        id: "1",
         name: "Kokiri Sword",
         image: "kokiri-sword"
       },
       %Item{
-        id: 2,
+        id: "2",
         name: "Fairy Ocarina",
         upgrade_names: ["Ocarina of Time"],
         image: "ocarina-1",

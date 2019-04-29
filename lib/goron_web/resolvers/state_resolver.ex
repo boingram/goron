@@ -8,9 +8,15 @@ defmodule GoronWeb.Resolvers.StateResolver do
       |> Enum.map(&VisitedItem.to_visited_item/1)
       |> Enum.into(%{}, fn %VisitedItem{} = item -> {item.id, item} end)
 
-    # update the value in the map
+    item_to_update = item_map[item_id]
 
-    IO.inspect(item_map)
+    updated_item_map =
+      Map.put(item_map, item_id, %VisitedItem{
+        item_to_update
+        | level: level
+      })
+
+    IO.inspect(updated_item_map)
 
     {:ok, %{}}
   end
