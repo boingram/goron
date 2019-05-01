@@ -6,20 +6,15 @@ defmodule Goron.Item.Impl do
 
   alias Goron.Item
 
-  @item_atoms [
-    :kokiri_sword,
-    :ocarina
-  ]
-
   def get_all_items do
     [
       %Item{
-        id: "1",
+        id: :kokiri_sword,
         name: "Kokiri Sword",
         image: "kokiri-sword"
       },
       %Item{
-        id: "2",
+        id: :ocarina,
         name: "Fairy Ocarina",
         upgrade_names: ["Ocarina of Time"],
         image: "ocarina-1",
@@ -27,14 +22,5 @@ defmodule Goron.Item.Impl do
         max_level: 2
       }
     ]
-  end
-
-  def id_to_atom(id) when is_number(id) do
-    Enum.at(@item_atoms, id - 1)
-  end
-
-  def id_to_atom(id) do
-    {numeric_id, _remainder} = Integer.parse(id)
-    id_to_atom(numeric_id)
   end
 end

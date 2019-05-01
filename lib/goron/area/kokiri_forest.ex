@@ -8,6 +8,7 @@ defmodule Goron.Area.KokiriForest do
   alias Goron.Location
   alias Goron.Item.VisitedItem
 
+  @area_id :kokiri_forest
   @area "Kokiri Forest"
 
   def get_area(items) do
@@ -15,27 +16,27 @@ defmodule Goron.Area.KokiriForest do
       Enum.map(
         [
           %Location{
-            id: 1,
+            id: :kokiri_sword_chest,
             name: "Kokiri Sword Chest"
           },
           %Location{
-            id: 2,
+            id: :midos_house_1,
             name: "Mido's House 1"
           },
           %Location{
-            id: 3,
+            id: :midos_house_2,
             name: "Mido's House 2"
           },
           %Location{
-            id: 4,
+            id: :midos_house_3,
             name: "Mido's House 3"
           },
           %Location{
-            id: 5,
+            id: :midos_house_4,
             name: "Mido's House 4"
           },
           %Location{
-            id: 6,
+            id: :ocarina_memory_game,
             name: "Ocarina Memory Game"
           }
         ],
@@ -45,6 +46,7 @@ defmodule Goron.Area.KokiriForest do
       )
 
     %Area{
+      id: @area_id,
       name: @area,
       locations: locations
     }

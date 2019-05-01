@@ -1,22 +1,19 @@
 defmodule Goron.Item.VisitedItem do
-  defstruct key: nil, level: 0, max_level: nil
+  defstruct id: nil, level: 0, max_level: nil
 
   alias Goron.Item
   alias Goron.Item.VisitedItem
 
-  def is_acquired?(%{} = items, key) when is_atom(key) do
-    case Map.fetch(items, key) do
+  def is_acquired?(%{} = items, id) when is_atom(id) do
+    case Map.fetch(items, id) do
       {:ok, %VisitedItem{level: level}} -> level > 0
       :error -> false
     end
   end
 
-  def to_visited_item(%Item{id: id, level: level, max_level: max_level}) do
-    key = Item.id_to_atom(id)
-    IO.inspect(key)
-
+  def from_item(%Item{id: id, level: level, max_level: max_level}) do
     visited_item = %VisitedItem{
-      key: Item.id_to_atom(id),
+      id: id,
       level: level,
       max_level: max_level
     }

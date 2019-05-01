@@ -5,15 +5,13 @@ defmodule GoronWeb.Resolvers.StateResolver do
   def update_item(_parent, %{item_id: item_id, level: level}, _resolution) do
     item_map =
       Item.get_all_items()
-      |> Enum.map(&VisitedItem.to_visited_item/1)
-      |> Enum.into(%{}, fn %VisitedItem{} = item -> {item.key, item} end)
+      |> Enum.map(&VisitedItem.from_item/1)
+      |> Enum.into(%{}, fn %VisitedItem{} = item -> {item_id, item} end)
 
-    item_key = Item.id_to_atom(item_id)
-
-    item_to_update = item_map[item_key]
+    item_to_update = item_map[item_id]
 
     updated_item_map =
-      Map.put(item_map, item_key, %VisitedItem{
+      Map.put(item_map, item_id, %VisitedItem{
         item_to_update
         | level: level
       })

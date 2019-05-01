@@ -3,7 +3,7 @@ defmodule Goron.Area do
   Defines operations to retrieve areas based on the user's state.
   """
   @derive Jason.Encoder
-  defstruct name: "", locations: []
+  defstruct id: nil, name: "", locations: []
 
   alias Goron.Area.KokiriForest
   alias Goron.State
