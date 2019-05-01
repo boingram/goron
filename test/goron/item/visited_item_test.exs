@@ -11,6 +11,6 @@ defmodule Goron.Item.VisitedItemTest do
   end
 
   def is_valid_visited_item?(%VisitedItem{} = item) do
-    assert item.id != nil && item.level == 0 && item.max_level > 0
+    assert item.key != nil && item.level == 0 && item.max_level > 0
   end
 end
