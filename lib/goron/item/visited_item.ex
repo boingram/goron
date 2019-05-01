@@ -5,8 +5,10 @@ defmodule Goron.Item.VisitedItem do
   alias Goron.Item.VisitedItem
 
   def is_acquired?(%{} = items, key) when is_atom(key) do
-    %VisitedItem{level: level} = items[key]
-    level > 0
+    case Map.fetch(items, key) do
+      {:ok, %VisitedItem{level: level}} -> level > 0
+      :error -> false
+    end
   end
 
   def to_visited_item(%Item{id: id, level: level, max_level: max_level}) do
