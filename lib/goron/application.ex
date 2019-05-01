@@ -9,9 +9,10 @@ defmodule Goron.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      GoronWeb.Endpoint
+      GoronWeb.Endpoint,
       # Starts a worker by calling: Goron.Worker.start_link(arg)
       # {Goron.Worker, arg},
+      Goron.State
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -1,6 +1,7 @@
 defmodule GoronWeb.Resolvers.StateResolver do
   alias Goron.Item
   alias Goron.Item.VisitedItem
+  alias Goron.State
 
   def update_item(_parent, %{item_id: item_id, level: level}, _resolution) do
     item_map =
@@ -18,11 +19,20 @@ defmodule GoronWeb.Resolvers.StateResolver do
 
     IO.inspect(updated_item_map)
 
-    locations = Goron.Area.get_all_areas(updated_item_map)
+    areas = Goron.Area.get_all_areas(updated_item_map)
 
-    IO.inspect(locations)
+    IO.inspect(areas)
 
-    {:ok, %{}}
+    state = %State{
+      id: 1,
+      areas: areas,
+      items: updated_item_map
+    }
+
+    stored_state = State.put(state)
+    IO.inspect(stored_state)
+
+    {:ok, stored_state}
   end
 
   def update_item(_parent, args, _resolution) do

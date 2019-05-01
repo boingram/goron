@@ -21,6 +21,13 @@ defmodule Goron.State do
   end
 
   def put(new_state = %Goron.State{}) do
-    GenServer.cast(@process_name, {:put, new_state})
+    GenServer.call(@process_name, {:put, new_state})
+  end
+
+  def child_spec(_args) do
+    %{
+      id: __MODULE__,
+      start: {__MODULE__, :new, []}
+    }
   end
 end
