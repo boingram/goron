@@ -3,12 +3,26 @@ defmodule GoronWeb.Schema.StateTypes do
   Defines GraphQL types for the user's state
   """
   use Absinthe.Schema.Notation
-  import_types(GoronWeb.Schema.AreaTypes)
-  import_types(GoronWeb.Schema.ItemTypes)
 
   object :state do
     field(:id, :id)
-    field(:items, list_of(:item))
-    field(:areas, list_of(:area))
+    field(:items, list_of(:visited_item))
+    field(:areas, list_of(:visited_area))
+  end
+
+  object :visited_item do
+    field(:id, :id)
+    field(:level, :integer)
+  end
+
+  object :visited_area do
+    field(:name, :string)
+    field(:locations, list_of(:visited_location))
+  end
+
+  object :visited_location do
+    field(:id, :id)
+    field(:accessible, :boolean)
+    field(:visited, :boolean)
   end
 end

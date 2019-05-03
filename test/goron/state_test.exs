@@ -2,11 +2,6 @@ defmodule Goron.StateTest do
   use ExUnit.Case, async: true
   alias Goron.State
 
-  setup do
-    {status, _pid} = State.new()
-    status
-  end
-
   test "read/write using server" do
     assert State.fetch_all() == %{}
 

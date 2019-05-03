@@ -17,7 +17,5 @@ defmodule Goron.Item.VisitedItem do
       level: level,
       max_level: max_level
     }
-
-    IO.inspect(visited_item)
   end
 end

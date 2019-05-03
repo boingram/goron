@@ -17,26 +17,24 @@ defmodule GoronWeb.Resolvers.StateResolver do
         | level: level
       })
 
-    IO.inspect(updated_item_map)
-
     areas = Goron.Area.get_all_areas(updated_item_map)
 
-    IO.inspect(areas)
-
-    state = %State{
+    State.put(%State{
       id: 1,
       areas: areas,
       items: updated_item_map
+    })
+
+    response = %{
+      id: 1,
+      areas: areas,
+      items: Map.values(updated_item_map)
     }
 
-    stored_state = State.put(state)
-    IO.inspect(stored_state)
-
-    {:ok, stored_state}
+    {:ok, response}
   end
 
-  def update_item(_parent, args, _resolution) do
-    IO.inspect(args)
+  def update_item(_parent, _args, _resolution) do
     {:ok, %{}}
   end
 end

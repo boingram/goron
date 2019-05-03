@@ -4,6 +4,8 @@ defmodule GoronWeb.Schema do
   in the application
   """
   use Absinthe.Schema
+  import_types(GoronWeb.Schema.AreaTypes)
+  import_types(GoronWeb.Schema.ItemTypes)
   import_types(GoronWeb.Schema.StateTypes)
 
   alias GoronWeb.Resolvers
