@@ -6,7 +6,7 @@ import 'jest-dom/extend-expect';
 import ApolloContext from '../../context';
 import Item from '../../components/Item/Item';
 import ItemPanel from './ItemPanel';
-import { ItemsResult } from '../../api/models/graphql/itemQueries';
+import { ItemsResult } from '../../api/models/graphql/itemRequests';
 
 const itemsQueryData: ItemsResult = {
   items: [

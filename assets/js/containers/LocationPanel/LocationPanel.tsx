@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Area from '../../components/Area/Area';
-import { GET_ALL_AREAS, AreasResult } from '../../api/models/graphql/areaQueries';
+import { GET_ALL_AREAS, AreasResult } from '../../api/models/graphql/areaRequests';
 import AreaModel from '../../api/models/areaModel';
 import useQuery from '../../hooks/useQuery';
 
