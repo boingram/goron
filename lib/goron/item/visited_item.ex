@@ -12,7 +12,7 @@ defmodule Goron.Item.VisitedItem do
   end
 
   def from_item(%Item{id: id, level: level, max_level: max_level}) do
-    visited_item = %VisitedItem{
+    %VisitedItem{
       id: id,
       level: level,
       max_level: max_level

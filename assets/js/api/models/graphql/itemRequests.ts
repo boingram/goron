@@ -17,6 +17,26 @@ export const GET_ALL_ITEMS: DocumentNode = gql`
   }
 `;
 
+export const UPDATE_ITEM: DocumentNode = gql`
+  mutation UpdateItem($id: id, $itemId: id!, $level: integer!) {
+    updateItem(id: $id, itemId: $itemId, level: $level) {
+      id
+      items {
+        id
+        level
+      }
+      areas {
+        name
+        locations {
+          id
+          accessible
+          visited
+        }
+      }
+    }
+  }
+`;
+
 export interface ItemsResult {
   items: ItemModel[];
 }
