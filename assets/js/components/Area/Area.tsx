@@ -7,7 +7,7 @@ import Location from '../Location/Location';
 type AreaClickHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 
 export interface AreaProps extends AreaModel {
-  clickHandler: AreaClickHandler;
+  clickHandler: (key: string) => void;
 }
 
 const Area: React.FC<AreaProps> = (props: AreaProps): React.ReactElement => {
@@ -20,7 +20,7 @@ const Area: React.FC<AreaProps> = (props: AreaProps): React.ReactElement => {
 
   return (
     <div className={classes.area}>
-      <button onClick={clickHandler} type="button">
+      <button onClick={() => clickHandler(name)} type="button">
         {name}
       </button>
       <ul>{locationComponents}</ul>

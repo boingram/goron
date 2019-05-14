@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { GET_ALL_AREAS, AreasResult } from '../../api/models/graphql/areaRequests';
 import AreaModel from '../../api/models/areaModel';
 import AreaPanel from '../../components/AreaPanel/AreaPanel';
+import { AreaProps } from '../../components/Area/Area';
 import useQuery from '../../hooks/useQuery';
 
 const App: React.FC = (): React.ReactElement => {
@@ -25,9 +26,25 @@ const App: React.FC = (): React.ReactElement => {
 
   useQuery(GET_ALL_AREAS, transformAreas);
 
+  const areaProps: AreaProps[] = areas.map((area: AreaModel) => {
+    const toggleOpen = (areaName: string): void => {
+      const newAreas: AreaModel[] = [...areas].map(
+        (prevArea: AreaModel): AreaModel => {
+          return prevArea.name === areaName ? { ...prevArea, open: !prevArea.open } : prevArea;
+        }
+      );
+      setAreas(newAreas);
+    };
+
+    return {
+      ...area,
+      clickHandler: toggleOpen
+    };
+  });
+
   return (
     <div>
-      <AreaPanel areas={areas} />
+      <AreaPanel areas={areaProps} />
     </div>
   );
 };
