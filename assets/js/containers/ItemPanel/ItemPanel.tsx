@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import classes from './ItemPanel.module.css';
 import { GET_ALL_ITEMS, ItemsResult } from '../../api/models/graphql/itemRequests';
 import Item from '../../components/Item/Item';
 import ItemModel from '../../api/models/itemModel';

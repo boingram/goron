@@ -8,7 +8,6 @@ import ItemPanel from '../containers/ItemPanel/ItemPanel';
 const Main: React.FC = (): React.ReactElement => (
   <main role="main" className="container">
     <ApolloContext.Provider value={goronClient}>
-      <ItemPanel />
       <App />
     </ApolloContext.Provider>
   </main>
