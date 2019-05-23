@@ -4,6 +4,10 @@ defmodule GoronWeb.Resolvers.StateResolver do
   alias Goron.State
 
   def update_item(_parent, %{item_id: item_id, level: level}, _resolution) do
+    IO.puts("item id #{item_id} | level: #{level}")
+
+    item_id = Item.to_atom(item_id)
+
     item_map =
       Item.get_all_items()
       |> Enum.map(&VisitedItem.from_item/1)

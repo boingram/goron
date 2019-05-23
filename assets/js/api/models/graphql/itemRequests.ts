@@ -1,6 +1,7 @@
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 
+import AreaModel from '../areaModel';
 import ItemModel from '../itemModel';
 
 export const GET_ALL_ITEMS: DocumentNode = gql`
@@ -18,17 +19,14 @@ export const GET_ALL_ITEMS: DocumentNode = gql`
 `;
 
 export const UPDATE_ITEM: DocumentNode = gql`
-  mutation UpdateItem($id: id, $itemId: id!, $level: integer!) {
+  mutation UpdateItem($id: String, $itemId: String!, $level: Int!) {
     updateItem(id: $id, itemId: $itemId, level: $level) {
       id
-      items {
-        id
-        level
-      }
       areas {
         name
         locations {
           id
+          name
           accessible
           visited
         }
@@ -39,4 +37,21 @@ export const UPDATE_ITEM: DocumentNode = gql`
 
 export interface ItemsResult {
   items: ItemModel[];
+}
+
+export interface ItemMutationVariables {
+  id: string;
+  itemId: string;
+  level: number;
+}
+
+export interface ItemMutationOptions {
+  mutation: DocumentNode;
+  variables: ItemMutationVariables;
+}
+
+export interface ItemMutationResult {
+  updateItem: {
+    areas: AreaModel[];
+  };
 }

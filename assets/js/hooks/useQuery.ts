@@ -4,10 +4,7 @@ import { DocumentNode } from 'graphql';
 
 import ApolloContext from '../context';
 
-export default function useQuery<T = object>(
-  query: DocumentNode,
-  transform: (result: T) => void
-): void {
+export default function useQuery<T = object>(query: DocumentNode, transform: (result: T) => void): void {
   const apolloClient: ApolloClient<object> = useContext(ApolloContext);
 
   useEffect(() => {

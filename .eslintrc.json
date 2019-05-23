@@ -18,7 +18,7 @@
         "devDependencies": ["**/*.test.ts", "**/*.test.tsx"]
       }
     ],
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "jsx-a11y/click-events-have-key-events": [0],
     "jsx-a11y/no-noninteractive-element-interactions": [0],
     "prettier/prettier": ["error"],

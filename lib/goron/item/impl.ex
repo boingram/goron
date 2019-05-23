@@ -23,4 +23,11 @@ defmodule Goron.Item.Impl do
       }
     ]
   end
+
+  def to_atom(item) do
+    case item do
+      "kokiri_sword" -> :kokiri_sword
+      "ocarina" -> :ocarina
+    end
+  end
 end

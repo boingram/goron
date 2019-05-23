@@ -1,36 +1,66 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
+import ApolloClient, { FetchResult } from 'apollo-boost';
 
+import ApolloContext from '../../context';
 import AreaModel from '../../api/models/areaModel';
 import AreaPanel from '../../components/AreaPanel/AreaPanel';
 import { AreaProps } from '../../components/Area/Area';
 import { GET_ALL_AREAS, AreasResult } from '../../api/models/graphql/areaRequests';
-import { GET_ALL_ITEMS, ItemsResult } from '../../api/models/graphql/itemRequests';
-import ItemModel from '../../api/models/itemModel';
+import {
+  GET_ALL_ITEMS,
+  ItemMutationOptions,
+  ItemMutationResult,
+  ItemMutationVariables,
+  ItemsResult,
+  UPDATE_ITEM
+} from '../../api/models/graphql/itemRequests';
 import ItemPanel from '../../components/ItemPanel/ItemPanel';
 import { ItemProps } from '../../components/Item/Item';
+import {
+  DECREMENT_ITEM_LEVEL,
+  INCREMENT_ITEM_LEVEL,
+  reducer,
+  TOGGLE_AREA,
+  ToggleAreaAction,
+  ItemUpdateAction,
+  ItemLevelUpdateAction,
+  UPDATE_ITEMS,
+  AreaUpdateAction,
+  UPDATE_AREAS
+} from './AppReducer';
 import useQuery from '../../hooks/useQuery';
 
 const LEFT_BUTTON = 0;
-const RIGHT_BUTTON = 2;
-
-const getNextItemLevel = (item: ItemModel, button: number): number => {
-  if (LEFT_BUTTON === button) {
-    return item.level >= item.maxLevel ? item.maxLevel : item.level + 1;
-  }
-  if (RIGHT_BUTTON === button) {
-    return item.level <= 0 ? 0 : item.level - 1;
-  }
-  return item.level;
-};
 
 const App: React.FC = (): React.ReactElement => {
-  const [areas, setAreas] = useState<AreaModel[]>([]);
-  const [items, setItems] = useState<ItemModel[]>([]);
+  const apolloClient: ApolloClient<object> = useContext(ApolloContext);
+
+  const initialState = { areas: [], items: [] };
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    const options: ItemMutationOptions = {
+      mutation: UPDATE_ITEM,
+      variables: {
+        id: '1',
+        itemId: 'ocarina',
+        level: 2
+      }
+    };
+    apolloClient
+      .mutate<ItemMutationResult, ItemMutationVariables>(options)
+      .then((result: FetchResult<ItemMutationResult, Record<string, any>>) => {
+        if (result.data && result.data.updateItem) {
+          const action: AreaUpdateAction = { type: UPDATE_AREAS, areas: result.data.updateItem.areas };
+          dispatch(action);
+        }
+      });
+  }, [state.items]);
 
   const transformAreas = (result: AreasResult): void => {
-    const retrievedAreas = result.areas.map(
+    const retrievedAreas: AreaModel[] = result.areas.map(
       (model: AreaModel, i: number): AreaModel => {
-        const open: boolean = areas.length > 0 ? areas[i].open : false;
+        const open: boolean = result.areas.length > 0 ? result.areas[i].open : false;
 
         return {
           name: model.name,
@@ -39,24 +69,23 @@ const App: React.FC = (): React.ReactElement => {
         };
       }
     );
-    setAreas(retrievedAreas);
+    const action: AreaUpdateAction = { type: UPDATE_AREAS, areas: retrievedAreas };
+    dispatch(action);
   };
 
   const transformItems = (result: ItemsResult): void => {
-    setItems(result.items);
+    const action: ItemUpdateAction = { type: UPDATE_ITEMS, items: result.items };
+    dispatch(action);
   };
 
+  // todo only call this once
   useQuery(GET_ALL_AREAS, transformAreas);
   useQuery(GET_ALL_ITEMS, transformItems);
 
-  const areaProps: AreaProps[] = areas.map((area: AreaModel) => {
+  const areaProps: AreaProps[] = state.areas.map((area: AreaModel) => {
     const toggleOpen = (areaName: string): void => {
-      const newAreas: AreaModel[] = [...areas].map(
-        (prevArea: AreaModel): AreaModel => {
-          return prevArea.name === areaName ? { ...prevArea, open: !prevArea.open } : prevArea;
-        }
-      );
-      setAreas(newAreas);
+      const action: ToggleAreaAction = { type: TOGGLE_AREA, areaName };
+      dispatch(action);
     };
 
     return {
@@ -65,19 +94,12 @@ const App: React.FC = (): React.ReactElement => {
     };
   });
 
-  const itemProps: ItemProps[] = items.map(item => {
-    const selectItem = (
-      event: React.MouseEvent<HTMLImageElement, MouseEvent>,
-      id: string
-    ): void => {
+  const itemProps: ItemProps[] = state.items.map(item => {
+    const selectItem = (event: React.MouseEvent<HTMLImageElement, MouseEvent>, id: string): void => {
       const { button } = event;
-      const newItems: ItemModel[] = [...items].map(prevItem => {
-        return prevItem.id === id
-          ? { ...prevItem, level: getNextItemLevel(prevItem, button) }
-          : prevItem;
-      });
-
-      setItems(newItems);
+      const type = button === LEFT_BUTTON ? INCREMENT_ITEM_LEVEL : DECREMENT_ITEM_LEVEL;
+      const action: ItemLevelUpdateAction = { type, itemId: id };
+      dispatch(action);
     };
 
     return {
