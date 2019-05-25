@@ -12,7 +12,8 @@ import {
   ItemMutationResult,
   ItemMutationVariables,
   ItemsResult,
-  UPDATE_ITEM
+  UPDATE_ITEM,
+  VisitedItemInput
 } from '../../api/models/graphql/itemRequests';
 import ItemPanel from '../../components/ItemPanel/ItemPanel';
 import { ItemProps } from '../../components/Item/Item';
@@ -38,23 +39,32 @@ const App: React.FC = (): React.ReactElement => {
   const initialState = { areas: [], items: [] };
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
+  useEffect((): void => {
+    const items = state.items.map(
+      (item): VisitedItemInput => {
+        return {
+          id: item.id,
+          level: item.level,
+          maxLevel: item.maxLevel
+        };
+      }
+    );
+
     const options: ItemMutationOptions = {
       mutation: UPDATE_ITEM,
       variables: {
         id: '1',
-        itemId: 'ocarina',
-        level: 2
+        items
       }
     };
-    apolloClient
-      .mutate<ItemMutationResult, ItemMutationVariables>(options)
-      .then((result: FetchResult<ItemMutationResult, Record<string, any>>) => {
+    apolloClient.mutate<ItemMutationResult, ItemMutationVariables>(options).then(
+      (result: FetchResult<ItemMutationResult, Record<string, any>>): void => {
         if (result.data && result.data.updateItem) {
           const action: AreaUpdateAction = { type: UPDATE_AREAS, areas: result.data.updateItem.areas };
           dispatch(action);
         }
-      });
+      }
+    );
   }, [state.items]);
 
   const transformAreas = (result: AreasResult): void => {

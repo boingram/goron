@@ -19,8 +19,8 @@ export const GET_ALL_ITEMS: DocumentNode = gql`
 `;
 
 export const UPDATE_ITEM: DocumentNode = gql`
-  mutation UpdateItem($id: String, $itemId: String!, $level: Int!) {
-    updateItem(id: $id, itemId: $itemId, level: $level) {
+  mutation UpdateItem($id: String, $items: VisitedItemInput) {
+    updateItem(id: $id, items: $items) {
       id
       areas {
         name
@@ -39,10 +39,15 @@ export interface ItemsResult {
   items: ItemModel[];
 }
 
+export interface VisitedItemInput {
+  id: string;
+  level: number;
+  maxLevel: number;
+}
+
 export interface ItemMutationVariables {
   id: string;
-  itemId: string;
-  level: number;
+  items: VisitedItemInput[];
 }
 
 export interface ItemMutationOptions {

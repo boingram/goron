@@ -11,9 +11,9 @@ defmodule Goron.Item.VisitedItem do
     end
   end
 
-  def from_item(%Item{id: id, level: level, max_level: max_level}) do
+  def from_map(%{id: id, level: level, max_level: max_level}) do
     %VisitedItem{
-      id: id,
+      id: Item.to_atom(id),
       level: level,
       max_level: max_level
     }

@@ -26,8 +26,7 @@ defmodule GoronWeb.Schema do
     @desc "Update an item"
     field :update_item, type: :state do
       arg(:id, :id)
-      arg(:item_id, non_null(:id))
-      arg(:level, non_null(:integer))
+      arg(:items, list_of(:visited_item_input))
 
       resolve(&Resolvers.StateResolver.update_item/3)
     end

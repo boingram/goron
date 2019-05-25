@@ -6,7 +6,8 @@ defmodule Goron.Item.VisitedItemTest do
 
   test "correctly create all visited items from items" do
     Item.get_all_items()
-    |> Enum.map(&VisitedItem.from_item/1)
+    |> Enum.map(fn item -> %{item | id: Atom.to_string(item.id)} end)
+    |> Enum.map(&VisitedItem.from_map/1)
     |> Enum.map(&is_valid_visited_item?/1)
   end
 

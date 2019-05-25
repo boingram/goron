@@ -4,6 +4,12 @@ defmodule GoronWeb.Schema.StateTypes do
   """
   use Absinthe.Schema.Notation
 
+  input_object :visited_item_input do
+    field(:id, :id)
+    field(:level, :integer)
+    field(:max_level, :integer)
+  end
+
   object :state do
     field(:id, :id)
     field(:items, list_of(:visited_item))
