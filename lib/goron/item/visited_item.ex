@@ -9,6 +9,10 @@ defmodule Goron.Item.VisitedItem do
   alias Goron.Item
   alias Goron.Item.VisitedItem
 
+  def is_acquired?(%{} = items, ids) when is_list(ids) do
+    Enum.all?(ids, &is_acquired?(items, &1))
+  end
+
   def is_acquired?(%{} = items, id) when is_atom(id) do
     case Map.fetch(items, id) do
       {:ok, %VisitedItem{level: level}} -> level > 0

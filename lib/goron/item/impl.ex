@@ -20,6 +20,12 @@ defmodule Goron.Item.Impl do
         image: "ocarina-1",
         upgrade_images: ["ocarina-2"],
         max_level: 2
+      },
+      %Item{
+        id: :song_of_storms,
+        name: "Song of Storms",
+        # todo fix 
+        image: "prescription"
       }
     ]
   end
@@ -28,6 +34,7 @@ defmodule Goron.Item.Impl do
     case item do
       "kokiri_sword" -> :kokiri_sword
       "ocarina" -> :ocarina
+      "song_of_storms" -> :song_of_storms
     end
   end
 end

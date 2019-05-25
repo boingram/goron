@@ -36,8 +36,8 @@ defmodule Goron.Area.KokiriForest do
             name: "Mido's House 4"
           },
           %Location{
-            id: :ocarina_memory_game,
-            name: "Ocarina Memory Game"
+            id: :song_of_storms_grotto,
+            name: "Song of Storms Grotto"
           }
         ],
         fn location ->
@@ -72,7 +72,7 @@ defmodule Goron.Area.KokiriForest do
     true
   end
 
-  def is_accessible?("Ocarina Memory Game", items) do
-    VisitedItem.is_acquired?(items, :ocarina)
+  def is_accessible?("Song of Storms Grotto", items) do
+    VisitedItem.is_acquired?(items, [:ocarina, :song_of_storms])
   end
 end
