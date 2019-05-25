@@ -11,7 +11,7 @@ defmodule Goron.Item.VisitedItemTest do
     |> Enum.map(&is_valid_visited_item?/1)
   end
 
-  def is_valid_visited_item?(%VisitedItem{} = item) do
+  def is_valid_visited_item?(item = %VisitedItem{}) do
     assert item.id != nil && item.level == 0 && item.max_level > 0
   end
 end

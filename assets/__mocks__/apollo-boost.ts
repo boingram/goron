@@ -4,9 +4,8 @@ interface DefaultExport<T> {
   default: T;
 }
 
-const apolloClient: ApolloClient<object> = jest.genMockFromModule<
-  DefaultExport<ApolloClient<object>>
->('apollo-boost').default;
+const apolloClient: ApolloClient<object> = jest.genMockFromModule<DefaultExport<ApolloClient<object>>>('apollo-boost')
+  .default;
 
 export const getMockedApolloClient = (data: any): ApolloClient<object> => {
   apolloClient.query = jest.fn(

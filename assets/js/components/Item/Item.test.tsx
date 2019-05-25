@@ -3,8 +3,8 @@ import TestRenderer, { ReactTestRenderer, ReactTestInstance } from 'react-test-r
 
 import Item from './Item';
 
-describe('Item', () => {
-  const id = 1;
+describe('Item', (): void => {
+  const id = 'kokiri_sword';
   const name = 'Kokiri Sword';
   const image = 'kokiri-sword';
   const upgradeNames: string[] = [];
@@ -12,7 +12,7 @@ describe('Item', () => {
   const maxLevel = 1;
   const clickHandler = (): void => {};
 
-  it('displays an unselected item', () => {
+  it('displays an unselected item', (): void => {
     const level = 0;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
@@ -50,7 +50,7 @@ describe('Item', () => {
     expect(img.props.alt).toBe(name);
   });
 
-  it('displays a selected item', () => {
+  it('displays a selected item', (): void => {
     const level = 1;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
@@ -88,12 +88,12 @@ describe('Item', () => {
     expect(img.props.alt).toBe(name);
   });
 
-  it('displays an upgrade image correctly', () => {
+  it('displays an upgrade image correctly', (): void => {
     const level = 2;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
       <Item
-        id={2}
+        id=":ocarina"
         name="Ocarina"
         image="ocarina-1"
         level={level}

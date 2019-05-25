@@ -15,12 +15,12 @@ const Area: React.FC<AreaProps> = (props: AreaProps): React.ReactElement => {
 
   let locationComponents: React.ReactElement[] = [];
   if (open) {
-    locationComponents = locations.map(location => <Location key={location.id} {...location} />);
+    locationComponents = locations.map((location): React.ReactElement => <Location key={location.id} {...location} />);
   }
 
   return (
     <div className={classes.area}>
-      <button onClick={() => clickHandler(name)} type="button">
+      <button onClick={(): void => clickHandler(name)} type="button">
         {name}
       </button>
       <ul>{locationComponents}</ul>

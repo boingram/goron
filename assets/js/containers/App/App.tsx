@@ -92,31 +92,35 @@ const App: React.FC = (): React.ReactElement => {
   useQuery(GET_ALL_AREAS, transformAreas);
   useQuery(GET_ALL_ITEMS, transformItems);
 
-  const areaProps: AreaProps[] = state.areas.map((area: AreaModel) => {
-    const toggleOpen = (areaName: string): void => {
-      const action: ToggleAreaAction = { type: TOGGLE_AREA, areaName };
-      dispatch(action);
-    };
+  const areaProps: AreaProps[] = state.areas.map(
+    (area: AreaModel): AreaProps => {
+      const toggleOpen = (areaName: string): void => {
+        const action: ToggleAreaAction = { type: TOGGLE_AREA, areaName };
+        dispatch(action);
+      };
 
-    return {
-      ...area,
-      clickHandler: toggleOpen
-    };
-  });
+      return {
+        ...area,
+        clickHandler: toggleOpen
+      };
+    }
+  );
 
-  const itemProps: ItemProps[] = state.items.map(item => {
-    const selectItem = (event: React.MouseEvent<HTMLImageElement, MouseEvent>, id: string): void => {
-      const { button } = event;
-      const type = button === LEFT_BUTTON ? INCREMENT_ITEM_LEVEL : DECREMENT_ITEM_LEVEL;
-      const action: ItemLevelUpdateAction = { type, itemId: id };
-      dispatch(action);
-    };
+  const itemProps: ItemProps[] = state.items.map(
+    (item): ItemProps => {
+      const selectItem = (event: React.MouseEvent<HTMLImageElement, MouseEvent>, id: string): void => {
+        const { button } = event;
+        const type = button === LEFT_BUTTON ? INCREMENT_ITEM_LEVEL : DECREMENT_ITEM_LEVEL;
+        const action: ItemLevelUpdateAction = { type, itemId: id };
+        dispatch(action);
+      };
 
-    return {
-      ...item,
-      clickHandler: selectItem
-    };
-  });
+      return {
+        ...item,
+        clickHandler: selectItem
+      };
+    }
+  );
 
   return (
     <div>

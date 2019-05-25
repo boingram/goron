@@ -1,4 +1,9 @@
 defmodule Goron.Item.VisitedItem do
+  @moduledoc """
+  Defines an item that has been visited by the user and provides
+  operations upon that
+  """
+
   defstruct id: nil, level: 0, max_level: nil
 
   alias Goron.Item

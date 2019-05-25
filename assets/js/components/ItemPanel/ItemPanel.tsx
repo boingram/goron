@@ -9,10 +9,10 @@ export interface ItemPanelProps {
 
 const ItemPanel: React.FC<ItemPanelProps> = (props: ItemPanelProps): React.ReactElement => {
   const { items } = props;
-  const itemElements = items.map(item => <Item key={item.id} {...item} />);
+  const itemElements = items.map((item): React.ReactElement => <Item key={item.id} {...item} />);
 
   return (
-    <div className={classes.itemPanel} onContextMenu={(e: React.MouseEvent) => e.preventDefault()}>
+    <div className={classes.itemPanel} onContextMenu={(e: React.MouseEvent): void => e.preventDefault()}>
       {itemElements}
     </div>
   );

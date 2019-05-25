@@ -8,7 +8,7 @@ export interface AreaPanelProps {
 
 const AreaPanel: React.FC<AreaPanelProps> = (props: AreaPanelProps): React.ReactElement => {
   const { areas } = props;
-  const areaElements = areas.map(area => <Area key={area.name} {...area} />);
+  const areaElements = areas.map((area): React.ReactElement => <Area key={area.name} {...area} />);
 
   return <div>{areaElements}</div>;
 };

@@ -3,10 +3,7 @@ import React from 'react';
 import classes from './Item.module.css';
 import ItemModel from '../../api/models/itemModel';
 
-type ImageClickHandler = (
-  event: React.MouseEvent<HTMLImageElement, MouseEvent>,
-  id: string
-) => void;
+type ImageClickHandler = (event: React.MouseEvent<HTMLImageElement, MouseEvent>, id: string) => void;
 
 export interface ItemProps extends ItemModel {
   clickHandler: ImageClickHandler;
@@ -29,7 +26,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps): React.ReactElement => {
 
   return (
     <div className={classes.item}>
-      <img src={imgSrc} className={imageClass} onMouseDown={e => clickHandler(e, id)} alt={name} />
+      <img src={imgSrc} className={imageClass} onMouseDown={(e): void => clickHandler(e, id)} alt={name} />
     </div>
   );
 };

@@ -5,8 +5,8 @@ defmodule Goron.Area.KokiriForest do
   """
 
   alias Goron.Area
-  alias Goron.Location
   alias Goron.Item.VisitedItem
+  alias Goron.Location
 
   @area_id :kokiri_forest
   @area "Kokiri Forest"

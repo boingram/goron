@@ -1,4 +1,8 @@
 defmodule GoronWeb.Resolvers.StateResolver do
+  @moduledoc """
+  Resolves GraphQL requests for updating state
+  """
+
   alias Goron.Item.VisitedItem
   alias Goron.State
 

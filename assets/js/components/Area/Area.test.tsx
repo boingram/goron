@@ -4,7 +4,7 @@ import TestRenderer, { ReactTestRenderer, ReactTestInstance } from 'react-test-r
 import Area from './Area';
 import Location from '../Location/Location';
 
-describe('Area', () => {
+describe('Area', (): void => {
   const name = 'Overworld';
   const locations = [
     {
@@ -17,7 +17,7 @@ describe('Area', () => {
   ];
   const clickHandler = (): void => {};
 
-  it('displays an unopened area', () => {
+  it('displays an unopened area', (): void => {
     const open = false;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
@@ -48,7 +48,7 @@ describe('Area', () => {
     // expect(li.props.children).toBe(['Kokiri Sword Chest']);
   });
 
-  it('displays an opened area', () => {
+  it('displays an opened area', (): void => {
     const open = true;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(

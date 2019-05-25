@@ -56,14 +56,16 @@ const getNextItemLevel = (item: ItemModel, itemAction: string): number => {
 const handleItemSelection = (state: AppState, itemId: string, actionType: string): AppState => {
   const { items } = state;
   let newItem: ItemModel | null = null;
-  const newItems: ItemModel[] = [...items].map(prevItem => {
-    if (prevItem.id !== itemId) {
-      return prevItem;
-    }
+  const newItems: ItemModel[] = [...items].map(
+    (prevItem): ItemModel => {
+      if (prevItem.id !== itemId) {
+        return prevItem;
+      }
 
-    newItem = { ...prevItem, level: getNextItemLevel(prevItem, actionType) };
-    return newItem;
-  });
+      newItem = { ...prevItem, level: getNextItemLevel(prevItem, actionType) };
+      return newItem;
+    }
+  );
 
   if (!newItem) {
     return state;

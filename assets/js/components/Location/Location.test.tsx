@@ -3,13 +3,13 @@ import TestRenderer, { ReactTestRenderer, ReactTestInstance } from 'react-test-r
 
 import Location from './Location';
 
-describe('Location', () => {
+describe('Location', (): void => {
   const id = 1;
   const name = 'Kokiri Sword';
   const area = 'Overworld';
   const visited = false;
 
-  it('displays an accessible location', () => {
+  it('displays an accessible location', (): void => {
     const accessible = true;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
@@ -29,7 +29,7 @@ describe('Location', () => {
     expect(li.children).toEqual([name]);
   });
 
-  it('displays an unaccessible location', () => {
+  it('displays an unaccessible location', (): void => {
     const accessible = false;
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
