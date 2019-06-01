@@ -1,7 +1,19 @@
 defmodule Goron.Location do
-  @moduledoc """
-  Defines a location where items can be found.
-  """
-  @derive Jason.Encoder
-  defstruct id: nil, name: "", area: "", accessible: false, visited: false
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "location" do
+    field(:key, :string)
+    field(:area, :string)
+    field(:name, :string)
+
+    timestamps()
+  end
+
+  @doc false
+  def changeset(location, attrs) do
+    location
+    |> cast(attrs, [:id, :name, :area])
+    |> validate_required([:id, :name, :area])
+  end
 end
