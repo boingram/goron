@@ -24,7 +24,6 @@ defmodule Goron.Item.Impl do
       %Item{
         id: :song_of_storms,
         name: "Song of Storms",
-        # todo fix 
         image: "prescription"
       }
     ]

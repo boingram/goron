@@ -9,6 +9,7 @@ defmodule Goron.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
+      Goron.Repo,
       GoronWeb.Endpoint,
       # Starts a worker by calling: Goron.Worker.start_link(arg)
       # {Goron.Worker, arg},
