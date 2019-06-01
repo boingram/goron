@@ -1,25 +1,19 @@
 defmodule Goron.Area do
-  @moduledoc """
-  Defines operations to retrieve areas based on the user's state.
-  """
-  @derive Jason.Encoder
-  defstruct id: nil, name: "", locations: []
+  use Ecto.Schema
+  import Ecto.Changeset
 
-  alias Goron.Area.KokiriForest
-  alias Goron.State
+  schema "area" do
+    field(:key, :string)
+    field(:name, :string)
+    has_many(:locations, Goron.Location)
 
-  def get_all_areas do
-    get_all_areas(%{})
+    timestamps()
   end
 
-  def get_all_areas(items = %{}) do
-    items
-    |> get_areas
-  end
-
-  def get_areas(items) do
-    [
-      KokiriForest.get_area(items)
-    ]
+  @doc false
+  def changeset(area, attrs) do
+    area
+    |> cast(attrs, [:key, :name])
+    |> validate_required([:key, :name])
   end
 end

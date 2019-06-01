@@ -3,9 +3,8 @@ defmodule Goron.Location do
   import Ecto.Changeset
 
   schema "location" do
-    field(:key, :string)
-    field(:area, :string)
-    field(:name, :string)
+    field :key, :string
+    field :name, :string
 
     timestamps()
   end
@@ -13,7 +12,7 @@ defmodule Goron.Location do
   @doc false
   def changeset(location, attrs) do
     location
-    |> cast(attrs, [:id, :name, :area])
-    |> validate_required([:id, :name, :area])
+    |> cast(attrs, [:key, :name])
+    |> validate_required([:key, :name])
   end
 end
