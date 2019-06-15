@@ -3,10 +3,15 @@ defmodule Goron.Location do
   import Ecto.Changeset
 
   schema "location" do
-    field :key, :string
-    field :name, :string
+    field(:key, :string)
+    field(:name, :string)
+    field(:area_id, :integer)
 
     timestamps()
+  end
+
+  def get_changeset(location = %Goron.Location{}) do
+    changeset(%Goron.Location{}, Map.from_struct(location))
   end
 
   @doc false

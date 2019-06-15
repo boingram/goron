@@ -8,5 +8,7 @@ defmodule Goron.Repo.Migrations.CreateArea do
 
       timestamps()
     end
+
+    create(unique_index(:area, [:key]))
   end
 end

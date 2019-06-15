@@ -10,6 +10,7 @@ defmodule Goron.Repo.Migrations.CreateLocation do
       timestamps()
     end
 
+    create(unique_index(:location, [:key]))
     create(index(:location, [:area_id]))
   end
 end
