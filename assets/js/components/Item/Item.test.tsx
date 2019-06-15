@@ -93,7 +93,7 @@ describe('Item', (): void => {
 
     const testRenderer: ReactTestRenderer = TestRenderer.create(
       <Item
-        id=":ocarina"
+        id="ocarina"
         name="Ocarina"
         image="ocarina-1"
         level={level}
@@ -106,7 +106,7 @@ describe('Item', (): void => {
 
     const instance: ReactTestInstance = testRenderer.root;
     const item: ReactTestInstance = instance.findByType(Item);
-    expect(item.props.id).toBe(2);
+    expect(item.props.id).toBe('ocarina');
     expect(item.props.name).toBe('Ocarina');
     expect(item.props.image).toBe('ocarina-1');
     expect(item.props.upgradeNames).toBe(upgradeNames);

@@ -1,5 +1,7 @@
 # Goron
 
+An extremely in-progress tracker for [Ocarina of Time Randomizer](https://ootrandomizer.com/) written using Elixir, Phoenix, React, and Typescript.
+
 Operations to run:
 
 - Install Elixir/Phoenix dependencies with `mix deps.get`
